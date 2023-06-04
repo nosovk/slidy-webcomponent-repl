@@ -3,11 +3,52 @@
 </script>
 
 <main>
-  <h1>Hello World!</h1>
-  <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  <h1>Slidy wrapped in webcomponent!</h1>
+  <p>Visit the <a href="https://www.npmjs.com/package/@slidy/core">Slidy doc</a> to learn how to build slidy wrapper.</p>
 
   <p class="container">
-    <my-component></my-component>
+    <my-component>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1573969697766-0e78459ae043?w=804"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1570231208815-a8a53ff11b36?w=1824"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1542879418-c6c556ff5690?w=1800"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1477592954047-28a31ae67583?w=1920"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1573969697766-0e78459ae043?w=804"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1570231208815-a8a53ff11b36?w=1824"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1542879418-c6c556ff5690?w=1800"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1477592954047-28a31ae67583?w=1920"/>
+      </li>
+    </my-component>
   </p>
 </main>
 

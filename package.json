@@ -26,5 +26,8 @@
   },
   "files": [
     "dist/lib"
-  ]
+  ],
+  "dependencies": {
+    "@slidy/core": "^3.7.4"
+  }
 }
