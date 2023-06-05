@@ -2,15 +2,16 @@
 
 <script lang="ts">
   import { slidy } from "@slidy/core";
-  let items = [],
-          index = 4,
+  import {onMount} from "svelte";
+  let     index = 4,
           length = 9,
           position = 0,
           snap = 'center', flow = 'row', axis = 'x',
           played = false,
-          timer = 0,
+          timer: NodeJS.Timer | number = 0,
           duration = 375,
           loop = false;
+  let node;
 
   function onMove(e) {
     index = e.detail.index
@@ -33,27 +34,73 @@
   function looping() {
     loop = !loop
   }
-  console.log("slidy")
+  onMount(() => {
+    console.log("el to bind slidy", node?.childNodes[0]?.assignedElements()[0])
+    slidy(node?.childNodes[0]?.assignedElements()[0], {
+      index,
+      clamp: 0,
+      indent: 1,
+      sensity: 5,
+      gravity: 1.2,
+      duration,
+      axis,
+      snap,
+      loop,
+    });
+    node.childNodes[0].assignedElements()[0].addEventListener('move', onMove)
+  });
 </script>
 
 <p>index: [<b>{index}</b>] position: <b>{Math.trunc(position)}</b>px</p>
 
-<section style:--flow={flow}>
-  <ul tabindex="0"
-      role="listbox"
-      use:slidy={{
-				index,
-				clamp: 0,
-				indent: 1,
-				sensity: 5,
-				gravity: 1.2,
-				duration,
-				axis,
-				snap,
-				loop,
-			}} on:move={onMove}>
-    <slot></slot>
+<section style:--flow={flow} bind:this={node}>
+   <slot name="slides"></slot>
+
+    // ul places not in slot works:
+   <!-- <ul bind:this={node} role="listbox" on:move={onMove}>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1573969697766-0e78459ae043?w=804"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1570231208815-a8a53ff11b36?w=1824"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1542879418-c6c556ff5690?w=1800"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1477592954047-28a31ae67583?w=1920"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1573969697766-0e78459ae043?w=804"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1570231208815-a8a53ff11b36?w=1824"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1542879418-c6c556ff5690?w=1800"/>
+      </li>
+      <li>
+        <img
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1477592954047-28a31ae67583?w=1920"/>
+      </li>
   </ul>
+  -->
+  <slot name="nav"></slot>
 </section>
 
 <nav>
